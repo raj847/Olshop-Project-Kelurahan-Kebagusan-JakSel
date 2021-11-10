@@ -26,6 +26,7 @@ color: #3E6E10;
         <?php endif; ?>
 
         <li><a href="checkout.php">Checkout</a></li>
+        <li><a href="/admin">Link</a></li>
 
       </ul>
 
