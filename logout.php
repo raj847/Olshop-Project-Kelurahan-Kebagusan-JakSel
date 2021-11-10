@@ -1,8 +1,6 @@
 <?php
-session_start();
-
-// Menghancurkan session pelanggan
+// session_start();
 session_destroy();
 
 echo "<script>alert('Anda telah logout!');</script>";
-echo "<script>location='index.php';</script>";
+echo "<script>location='login.php';</script>";

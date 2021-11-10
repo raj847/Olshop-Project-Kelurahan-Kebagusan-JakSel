@@ -1,73 +1,60 @@
+<h2>Detail Pembelian</h2>
+
 <?php
-session_start();
-
-// Koneksi ke database
-include 'koneksi.php';
-
-// Mendapatkan id_produk dari url
-$id_produk = $_GET['id'];
-
-// Query ambil data
-$ambil = $koneksi->query("SELECT * FROM produk WHERE id_produk='$id_produk'");
+$ambil = $koneksi->query("SELECT * FROM pembelian JOIN pelanggan ON pembelian.id_pelanggan = pelanggan.id_pelanggan WHERE pembelian.id_pembelian = '$_GET[id]'");
 $detail = $ambil->fetch_assoc();
-
-// echo "<pre>";
-// print_r($detail);
-// echo "</pre>";
-
-// Jika tombol beli di klik
-if(isset($_POST['beli'])){
-  // Mendapatkan jumlah yang diinputkan
-  $jumlah = $_POST['jumlah'];
-
-  // Masukkan ke keranjang belanja
-  $_SESSION['keranjang'][$id_produk] = $jumlah;
-
-  echo "<div class='alert alert-success'>Produk telah masuk ke keranjang</div>";
-  echo "<meta http-equiv='refresh' content='1;url=keranjang.php'>";
-}
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detail Produk</title>
-  <link rel="stylesheet" href="admin/assets/css/bootstrap.css">
-</head>
-<body>
+<!-- <pre><?php // print_r($detail); ?></pre> -->
 
-<!-- navbar -->
-<?php include 'templates/navbar.php'; ?>
+<div class="row" style="margin-bottom:10px;">
+	<div class="col-md-4">
+		<h3>Pembelian</h3>
+		tanggal : <?= $detail["tanggal_pembelian"]; ?><br>
+		total : Rp.<?= number_format($detail["total_pembelian"]); ?>,- <br>
+		Status : <?= $detail['status_pembelian']; ?>
+	</div>
+	<div class="col-md-4">
+		<h3>Pelanggan</h3>
+		<strong><?= $detail["nama_pelanggan"]; ?></strong><br>
+		<?= $detail["telepon_pelanggan"]; ?><br>
+		<?= $detail["email_pelanggan"]; ?>
+	</div>
+	<div class="col-md-4">
+		<h3>Pengiriman</h3>
+		<strong><?= $detail['tipe']; ?> <?= $detail['distrik']; ?> <?= $detail['provinsi']; ?></strong><br>
+		Ongkos kirim: Rp. <?= number_format($detail['ongkir']); ?>,-<br>
+		Ekspedisi: <?= $detail['ekspedisi']; ?> <?= $detail['paket']; ?> <?= $detail['estimasi']; ?><br>
+		Alamat: <?= $detail['alamat_pengiriman']; ?>
+	</div>
+</div>
 
-<section class="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <img src="foto_produk/<?= $detail['foto_produk']; ?>" class="img-responsive">
-      </div>
-      <div class="col-md-6">
-        <h2><?= $detail['nama_produk']; ?></h2>
-        <h4>Rp. <?= number_format($detail['harga_produk']); ?>,-</h4>
-        <h5>Stok : <?= $detail['stok_produk']; ?></h5>
-        <form action="" method="post">
-          <div class="form-group">
-            <div class="input-group">
-              <input type="number" min="1" max="<?= $detail['stok_produk']; ?>" class="form-control" name="jumlah">
-              <div class="input-group-btn">
-                <button class="btn btn-primary" name="beli">beli</button>
-              </div>
-            </div>
-          </div>
-        </form>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>No</th>
+			<th>Nama Produk</th>
+			<th>Harga</th>
+			<th>Jumlah</th>
+			<th>Subtotal</th>
+		</tr> 
+	</thead>
+	<tbody>
 
-        <p><?= $detail['deskripsi_produk']; ?></p>
-      </div>
-    </div>
-  </div>
-</section>
-  
-</body>
-</html>
+		<?php $no=1; ?>
+		<!-- menggabungkan (join) tabel produk dengan tabel pembelian_produk -->
+		<?php $ambil = $koneksi->query("SELECT * FROM pembelian_produk JOIN produk ON pembelian_produk.id_produk = produk.id_produk WHERE pembelian_produk.id_pembelian = '$_GET[id]'"); ?>
+		<?php while($pecah = $ambil->fetch_assoc()): ?>
+		<tr>
+			<td><?= $no; ?>.</td>
+			<td><?= $pecah["nama_produk"]; ?></td>
+			<td>Rp. <?= number_format($pecah["harga_produk"]); ?>,-</td>
+			<td><?= $pecah["jumlah"]; ?></td>
+			<td>Rp. <?= number_format($pecah["jumlah"]*$pecah["harga_produk"]); ?>,-</td>
+		</tr>
+		<?php $no++; ?>
+		<?php endwhile; ?>
+
+	</tbody>
+</table>

@@ -1,1 +1,0 @@
-# vinka-project
