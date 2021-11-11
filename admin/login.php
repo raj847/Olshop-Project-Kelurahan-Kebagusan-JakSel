@@ -1,7 +1,7 @@
 ﻿<?php
 session_start();
 //koneksi ke database
-$koneksi = new mysqli("localhost", "root", "", "db_tokoonline");
+$koneksi = new mysqli("remotemysql.com", "DWqDe09S9e", "eJiuG3DuZM", "DWqDe09S9e");
 ?>
 
 <?php
