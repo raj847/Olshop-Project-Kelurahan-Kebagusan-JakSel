@@ -40,7 +40,7 @@ if(!isset($_SESSION['admin'])){
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.html">Admin Arya</a> 
+			<a class="navbar-brand" href="index.html">Administrator</a> 
 		</div>
 		<div style="color: white;
 		padding: 15px 50px 5px 50px;

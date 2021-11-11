@@ -66,18 +66,21 @@ if(isset($_POST['login'])){
 								<span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
 								<input type="password" class="form-control"  name="pass" />
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="checkbox-inline">
 									<input type="checkbox" /> Remember me
 								</label>
 								<span class="pull-right">
 									<a href="#" >Forget password ? </a> 
 								</span>
-							</div>
+							</div> -->
 										
 							<button class="btn btn-primary" name="login">Login</button>
 							<hr />
-							Not register ? <a href="registeration.html" >click here </a> 
+							username : kebagusan
+							<br>
+							password : kebagusan123 
+							<!-- <a href="registeration.html" >click here </a>  -->
 						</form>
 
 					</div>

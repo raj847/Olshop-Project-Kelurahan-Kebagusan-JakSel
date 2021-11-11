@@ -1,4 +1,4 @@
-<h2>Selamat Datang Admin Arya</h2>
+<h2>Halaman Administrator Pasar Online Kebagusan</h2>
 
 <!-- <pre> -->
   <?php // print_r($_SESSION); ?>

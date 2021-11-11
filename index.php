@@ -10,7 +10,7 @@ include 'koneksi.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TokoHpArya</title>
+  <title>Pasar Online Kebagusan</title>
   <link rel="stylesheet" href="admin/assets/css/bootstrap.css">
 </head>
 <style>
@@ -51,7 +51,7 @@ img {
   
 </body>
 <footer>
-  <h1>by arya</h1>
+  <h7>by arya</h7>
 
 </footer>
 </html>
